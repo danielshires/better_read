@@ -1,13 +1,25 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { BrowserRouter as Router, Routes, Route, Switch } from 'react-router-dom';
 import './index.css';
 import App from './App';
+import ReadingList from './ReadingList';
+import About from './About'
 import reportWebVitals from './reportWebVitals';
+import DisplayBooks from './components/Books/DisplayBooks';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <Router>
+      <Routes>
+        <Route path="/" element={<App />} />
+        <Route path="books/:id" element={<DisplayBooks />} />
+        <Route path="reading-list" element={<ReadingList />} />
+        <Route path="about" element={<About />} />
+      </Routes>
+    </Router>
   </React.StrictMode>
 );
 
