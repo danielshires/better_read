@@ -11,7 +11,7 @@ export default class Home extends Component {
           <Header />
         </header>
         <section className="container mx-auto">
-          <Hero />
+          <Hero title="The better way to read" subTitle="Discover new books, track the books you’ve read and those you want to read"/>
         </section>
         <main className="container mx-auto flex flex-col gap-10 lg:gap-20">
           <SubjectRow />

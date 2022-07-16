@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import AuthorName from './AuthorName'
 
 export default class Authors extends Component {
 
@@ -36,13 +37,13 @@ export default class Authors extends Component {
             ...this.state,
             author: response.name
         }, () => {
-            console.log(this.state)
+            this.props.handleAuthor(this.state.author)
         })
     }
 
     render() {
         return (
-           <>by {this.state.author}</>
+            <AuthorName authorName={this.state.author}/>
         )
     }
 }

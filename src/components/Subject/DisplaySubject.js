@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import DisplaySingleBook from './DisplaySingleBook'
+import SingleBookContainer from './SingleBookContainer'
 
 export default class DisplaySubject extends Component {
 
@@ -7,12 +7,6 @@ export default class DisplaySubject extends Component {
         super()
         this.state = {
             response: [],
-            search: {
-                key: '',
-                title: '',
-                authors: '',
-                ia: ''
-            },
         }
     }
 
@@ -41,25 +35,23 @@ export default class DisplaySubject extends Component {
 
     setInitialState = (response) => {
         this.setState({
-            ...this.state,
-            response: response.works
-        }, () => {
-            // console.log(this.state)
+            response: response.works,
         })
     }
 
+
     displaySingleBook = () => {
         return this.state.response.map((entry, index) => {
-            while(index < 6){
-                return <DisplaySingleBook key={entry.cover_edition_key} data={entry} />
+            while (index < 6) {
+                return <SingleBookContainer key={entry.key.substring(7)} id={entry.key.substring(7)} data={entry} />
             }
         })
     }
 
-    firstLetterUppercase =() => {
+    firstLetterUppercase = () => {
         return this.props.categoryName.charAt(0).toUpperCase() + this.props.categoryName.slice(1)
     }
-    
+
     render() {
         return (
             <div className='flex flex-col gap-4'>

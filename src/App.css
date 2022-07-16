@@ -3,18 +3,32 @@
 @tailwind utilities;
 
 @layer components {
+
+  /* Button Styles */
     .btn-primary {
-      @apply py-3 px-6 bg-slate-900 text-white text-base shadow-md hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75 rounded-full;
+      @apply py-3 px-6 bg-slate-900 text-white text-base shadow-md rounded-full hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75;
     }
 
+    .btn-primary_success{
+      @apply py-3 px-6 bg-green-700 text-white text-base rounded-full;
+    }
+
+    /* Text Styles */
+
     .h1 {
-      @apply text-4xl font-bold mb-2 md:mb-3
+      @apply text-4xl font-bold mb-2 md:mb-3 group-hover:underline group-hover:underline-offset-1
     }
 
     .p {
-      @apply text-base font-normal mb-2 md:mb-4 text-slate-600
+      @apply text-base font-normal mb-2 md:mb-4 text-slate-600 group-hover:underline group-hover:underline-offset-1
     }
     
+
+    /* Hover States */
+
+    .hover-underline {
+      @apply group-hover:underline group-hover:underline-offset-2
+    }
   }
 
 

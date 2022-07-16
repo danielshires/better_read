@@ -16,7 +16,7 @@ root.render(
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="books/:id" element={<DisplayBooks />} />
-        <Route path="reading-list" element={<ReadingList />} />
+        <Route path="my-library" element={<ReadingList />} />
         <Route path="about" element={<About />} />
       </Routes>
     </Router>
