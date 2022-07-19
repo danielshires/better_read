@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter as Router, Routes, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './index.css';
 import App from './App';
 import ReadingList from './ReadingList';
-import About from './About'
+import SearchPage from './SearchPage'
 import reportWebVitals from './reportWebVitals';
 import DisplayBooks from './components/Books/DisplayBooks';
 
@@ -17,7 +17,7 @@ root.render(
         <Route path="/" element={<App />} />
         <Route path="books/:id" element={<DisplayBooks />} />
         <Route path="my-library" element={<ReadingList />} />
-        <Route path="about" element={<About />} />
+        <Route path="search" element={<SearchPage />} />
       </Routes>
     </Router>
   </React.StrictMode>

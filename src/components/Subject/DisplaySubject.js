@@ -15,7 +15,7 @@ export default class DisplaySubject extends Component {
     }
 
     fetchData = () => {
-        const searchURL = `http://openlibrary.org/subjects/${this.props.categoryName}.json`
+        const searchURL = `http://openlibrary.org/subjects/${this.props.categoryName}.json?`
         fetch(searchURL)
             // Return JSON
             .then(response => {
@@ -39,12 +39,9 @@ export default class DisplaySubject extends Component {
         })
     }
 
-
     displaySingleBook = () => {
         return this.state.response.map((entry, index) => {
-            while (index < 6) {
                 return <SingleBookContainer key={entry.key.substring(7)} id={entry.key.substring(7)} data={entry} />
-            }
         })
     }
 
@@ -55,7 +52,7 @@ export default class DisplaySubject extends Component {
     render() {
         return (
             <div className='flex flex-col gap-4'>
-                <div className="text-xl font-bold mb-4">{this.firstLetterUppercase()}</div>
+                <div className="text-2xl font-bold mb-4">{this.firstLetterUppercase()}</div>
                 <div className='grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-x-8 gap-y-16'>
                     {this.displaySingleBook()}
                 </div>

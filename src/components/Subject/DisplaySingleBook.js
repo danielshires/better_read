@@ -8,10 +8,6 @@ export default class DisplaySingleBook extends Component {
     this.state = {}
   }
 
-  componentDidMount() {
-
-  }
-
   handleAuthor = (data) => {
     this.setState({
       ...this.state,
@@ -27,9 +23,9 @@ export default class DisplaySingleBook extends Component {
     }
   }
 
+
   displayBook = () => {
     if (!Array.isArray(this.props.data)) {
-      console.log(this.props.data)
       return <Link to={`../books/${this.props.data.key.substring(7)}`} className="group">
         <div className="displaySubject" >
           <div className='flex justify-center items-center overflow-hidden object-cover h-60 lg:h-60 mb-3 bg-stone-100 px-8 py-8'>
@@ -39,13 +35,10 @@ export default class DisplaySingleBook extends Component {
           <h4 className='text-slate-600 hover-underline'><Authors handleAuthor={this.handleAuthor} authors={this.props.data.authors} /></h4>
         </div>
       </Link>
-    } else {
-      console.log(`Array ` + this.props.data)
     }
   }
 
   render() {
-    // console.log(this.props.data)
     return (
       <>{this.displayBook()}</>
     )

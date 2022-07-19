@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Header from '../Page/Header';
 import Book from './Book';
+import { v4 as uuidv4 } from 'uuid';
 
 const url = 'http://localhost:3000/readingList'
 
@@ -15,6 +16,7 @@ const DisplayBooks = () => {
   useEffect(() => {
     fetchBook()
     checkReadingList()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const fetchBook = () => {
@@ -29,9 +31,10 @@ const DisplayBooks = () => {
   }
 
   const postData = (data) => {
-    
+
     const sendData = {
-      'id': data
+      'id': data,
+      'key': uuidv4()
     }
 
     const config = {

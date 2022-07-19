@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import DisplaySingleBook from './DisplaySingleBook';
+import ReadingListBook from '../ReadingList/ReadingListBook';
 
 class SingleBookContainer extends Component {
 
@@ -7,6 +8,7 @@ class SingleBookContainer extends Component {
         super()
         this.state = {
             id: props.id,
+            key: props.id,
             response: []
         }
         this.fetchBook = this.fetchBook.bind(this)
@@ -38,11 +40,16 @@ class SingleBookContainer extends Component {
     }
 
 
+
     render() {
+        console.log(this.state.key)
         return (
             <>
-            {/* {this.checkIfDataPresent()} */}
-                <DisplaySingleBook data={this.state.response} />
+            {this.props.readingList 
+            ? 
+            <ReadingListBook id={this.state.id} data={this.state.response} readingList={this.props.readingList} removeFromReadingList={this.props.removeFromReadingList}/> 
+            :
+            <DisplaySingleBook id={this.state.id} data={this.state.response} readingList={this.props.readingList}/> }
             </>
 
         );
