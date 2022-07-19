@@ -42,7 +42,6 @@ class SingleBookContainer extends Component {
 
 
     render() {
-        console.log(this.state.key)
         return (
             <>
             {this.props.readingList 
