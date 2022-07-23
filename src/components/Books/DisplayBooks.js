@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import Header from '../Page/Header';
 import Book from './Book';
 import { v4 as uuidv4 } from 'uuid';
+import { getDatabase, ref, push, set, get, child } from "firebase/database";
 
 const url = 'http://localhost:3000/readingList'
 
@@ -11,16 +12,15 @@ const DisplayBooks = () => {
   const { id } = useParams();
 
   const [data, setData] = useState([]);
-  const [readingList, setReadingList] = useState([]);
+  const [firebaseResponse, setFirebaseDB] = useState([]);
 
   useEffect(() => {
     fetchBook()
     checkReadingList()
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const fetchBook = () => {
-
     fetch(`https://openlibrary.org/works/${id}.json`)
       .then(response => response.json())
       .then(response => {
@@ -30,54 +30,44 @@ const DisplayBooks = () => {
 
   }
 
-  const postData = (data) => {
+  const addToReadingList = (data) => {
 
-    const sendData = {
-      'id': data,
-      'key': uuidv4()
+    const db = getDatabase();
+    const postListRef = ref(db, 'readingList');
+    const newPostRef = push(postListRef);
+
+    function writeUserData(bookID, uniqueID) {
+      set(newPostRef, {
+        'id': bookID,
+        'key': uniqueID
+      });
     }
 
-    const config = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json"
-      },
-      body: JSON.stringify(sendData)
-    }
+    writeUserData(data, uuidv4())
 
-    fetch(url, config)
-      .then(response => {
-        if (response.ok) {
-          checkReadingList()
-          return Promise.resolve(response)
-        }
-        return Promise.reject(response);
-      })
+    checkReadingList()
   }
 
   const checkReadingList = () => {
-    fetch(url)
-      // Return JSON
-      .then(response => {
-        if (response.ok) {
-          return response.json()
-        }
-        return Promise.reject(response);
-      })
-      // Set initial array
-      .then(response => {
-        setReadingList(response)
-        return response
-      }, networkError => {
-        console.log(networkError.message)
-      })
+
+    const dbRef = ref(getDatabase());
+
+    get(child(dbRef, `readingList`)).then((snapshot) => {
+      if (snapshot.exists()) {
+        console.log(snapshot.val());
+        setFirebaseDB(snapshot.val())
+      } else {
+        console.log("No data available");
+      }
+    }).catch((error) => {
+      console.error(error);
+    });
   }
 
   return (
     <div>
       <Header />
-      <Book data={data} id={id} addToList={postData} checkReadingList={readingList}/>
+      <Book data={data} id={id} addToReadingList={addToReadingList} firebaseDb={firebaseResponse} />
     </div>
   )
 }

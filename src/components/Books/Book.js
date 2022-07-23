@@ -8,10 +8,10 @@ export default class Book extends Component {
   constructor(props) {
     super()
     this.state = {
-
     }
+
     this.submitData = this.submitData.bind(this)
-    this.addBookToReadingList = this.addBookToReadingList.bind(this)
+    this.searchObj = this.searchObj.bind(this)
   }
 
   componentDidUpdate(prevProps) {
@@ -25,16 +25,21 @@ export default class Book extends Component {
     }
   }
 
-  addBookToReadingList = (data) => {
-    return this.props.addToList(data)
+  submitData = () => {
+    if (this.searchObj(this.props.firebaseDb) === undefined) {
+      return this.props.addToReadingList(this.props.id)
+    } else {
+      return null
+    }
   }
 
-  submitData = () => {
-
-    const checkID = this.props.checkReadingList.find(entry => entry.bookID === this.props.id)
-
-    return checkID === undefined ? this.addBookToReadingList(this.props.id) : false
-
+  searchObj = (obj) => {
+    // Checks if the reading list contains the same id as the page id
+    let bookID
+    Object.keys(obj).map(key => {
+      return obj[key].id === this.props.id ? bookID = obj[key].id : null
+    })
+    return bookID
   }
 
   handleAuthor = (data) => {
@@ -57,17 +62,17 @@ export default class Book extends Component {
   }
 
   displayButton = () => {
-    const checkID = this.props.checkReadingList.find(entry => entry.id === this.props.id)
 
-    if (checkID === undefined) {
+    if (this.searchObj(this.props.firebaseDb) === undefined) {
       return <ReadingListButton submitData={this.submitData} buttonActive={true} />
-    } 
-
+    }
     return <ReadingListButton submitData={this.submitData} buttonActive={false} />
   }
 
   displayBook = () => {
     if (Object.keys(this.props.data).length > 0) {
+      // console.log(this.props.firebaseDb)
+      // console.log(this.props.checkReadingList)
       return <div className="container mx-auto mt-10">
         <div className='back flex gap-2'>
           <div>

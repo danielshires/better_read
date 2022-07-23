@@ -9,6 +9,7 @@ class SingleBookContainer extends Component {
         this.state = {
             id: props.id,
             key: props.id,
+            loaded: false,
             response: []
         }
         this.fetchBook = this.fetchBook.bind(this)
@@ -35,20 +36,22 @@ class SingleBookContainer extends Component {
 
     setInitialState = (response) => {
         this.setState({
-            response: response
+            response: response,
+            loaded: true,
         })
     }
 
-
-
     render() {
+        if (!this.state.loaded) {
+            return false;
+        }
         return (
             <>
-            {this.props.readingList 
-            ? 
-            <ReadingListBook id={this.state.id} data={this.state.response} readingList={this.props.readingList} removeFromReadingList={this.props.removeFromReadingList}/> 
-            :
-            <DisplaySingleBook id={this.state.id} data={this.state.response} readingList={this.props.readingList}/> }
+                {this.props.readingList
+                    ?
+                    <ReadingListBook id={this.state.id} dataBaseKey={this.props.dataBaseKey} data={this.state.response} readingListFirebase={this.props.readingListFirebase} removeFromReadingList={this.props.removeFromReadingList} />
+                    :
+                    <DisplaySingleBook id={this.state.id} data={this.state.response} readingList={this.props.readingList} />}
             </>
 
         );

@@ -20,24 +20,23 @@ const firebaseConfig = {
   measurementId: "G-YVYBNR6XN3",
   databaseURL: "https://betterread-e967b-default-rtdb.asia-southeast1.firebasedatabase.app/",
 }
-
 const app = initializeApp(firebaseConfig);
 
-const userId = '01'
-const name = 'Daniel Shires'
-const email = 'hello@danielshires.com'
-const imageURl = 'www.google.com'
+// const userId = '01'
+// const name = 'Daniel Shires'
+// const email = 'hello@danielshires.com'
+// const imageURl = 'www.google.com'
  
-function writeUserData(userId, name, email, imageUrl) {
-const db = getDatabase(app);
-  set(ref(db, 'readingList/' + userId), {
-    username: name,
-    email: email,
-    profile_picture : imageUrl
-  });
-}
+// function writeUserData(userId, name, email, imageUrl) {
+// const db = getDatabase(app);
+//   set(ref(db, 'readingList/' + userId), {
+//     username: name,
+//     email: email,
+//     profile_picture : imageUrl
+//   });
+// }
 
-writeUserData(userId, name, email, imageURl)
+// writeUserData(userId, name, email, imageURl)
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

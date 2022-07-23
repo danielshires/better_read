@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import DisplaySubject from './DisplaySubject'
 
-
 export default class SubjectRow extends Component {
 
 

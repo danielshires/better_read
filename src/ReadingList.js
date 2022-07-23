@@ -3,15 +3,15 @@ import Header from './components/Page/Header'
 import SingleBookContainer from './components/Subject/SingleBookContainer'
 import Hero from './components/Homepage/Hero'
 import Emoji from 'a11y-react-emoji'
-
-const url = 'http://localhost:3000/readingList'
+import { getDatabase, ref, get, child, remove } from "firebase/database";
 
 export default class ReadingList extends Component {
 
   constructor() {
     super()
     this.state = {
-      readingList: []
+      readingList: [],
+      firebaseReponse: ''
     }
   }
 
@@ -20,43 +20,41 @@ export default class ReadingList extends Component {
   }
 
   fetchData = () => {
-    fetch(url)
-      .then(response => response.json())
-      .then(response => {
+
+    const dbRef = ref(getDatabase());
+
+    get(child(dbRef, `readingList`)).then((snapshot) => {
+      if (snapshot.exists()) {
         this.setState({
-          readingList: response
+          firebaseReponse: snapshot.val()
         })
-        return response
-      })
-      .catch(error => { console.log(error) })
+      } else {
+        console.log("No data available");
+      }
+    }).catch((error) => {
+      console.error(error);
+    });
+
   }
 
   removeFromReadingList = (data) => {
+    const db = getDatabase();
+    const dbRef = ref(db, `readingList/${data}`);
+    remove(dbRef)
+    this.fetchData()
+  }
 
-    const config = {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json"
-      },
-    }
-
-    fetch(`${url}/${data}`, config)
-      .then(response => {
-        if (response.ok) {
-          this.fetchData()
-          return Promise.resolve(response)
-        }
-        return Promise.reject(response);
-      })
+  searchObj = (obj) => {
+    return Object.keys(obj).map(key => {
+      return <SingleBookContainer key={obj[key].key} dataBaseKey={key} id={obj[key].id} readingList={true} readingListFirebase={this.state.firebaseReponse} removeFromReadingList={this.removeFromReadingList} />
+    })
   }
 
   renderReadingList = () => {
-    if (Object.keys(this.state.readingList).length > 0) {
-      return this.state.readingList.map(book => {
-        return <SingleBookContainer key={book.key} id={book.id} readingList={true} removeFromReadingList={this.removeFromReadingList}/>
-      })
-    } else {
+    if (Object.keys(this.state.firebaseReponse).length > 0) {
+      return this.searchObj(this.state.firebaseReponse)
+    }
+    else {
       return <div>Nothing in your reading list  <Emoji symbol="😔" label="Pensive Face" /></div>
     }
   }
