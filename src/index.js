@@ -8,7 +8,6 @@ import SearchPage from './SearchPage'
 import reportWebVitals from './reportWebVitals';
 import DisplayBooks from './components/Books/DisplayBooks';
 import { initializeApp } from 'firebase/app';
-import { getDatabase, ref, set } from "firebase/database";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDB7kSLyJ7gr9tEIBW9uNnaYcjzUfg-Cxg",
@@ -20,23 +19,7 @@ const firebaseConfig = {
   measurementId: "G-YVYBNR6XN3",
   databaseURL: "https://betterread-e967b-default-rtdb.asia-southeast1.firebasedatabase.app/",
 }
-const app = initializeApp(firebaseConfig);
-
-// const userId = '01'
-// const name = 'Daniel Shires'
-// const email = 'hello@danielshires.com'
-// const imageURl = 'www.google.com'
- 
-// function writeUserData(userId, name, email, imageUrl) {
-// const db = getDatabase(app);
-//   set(ref(db, 'readingList/' + userId), {
-//     username: name,
-//     email: email,
-//     profile_picture : imageUrl
-//   });
-// }
-
-// writeUserData(userId, name, email, imageURl)
+initializeApp(firebaseConfig);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

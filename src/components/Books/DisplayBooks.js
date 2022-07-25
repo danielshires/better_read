@@ -5,8 +5,6 @@ import Book from './Book';
 import { v4 as uuidv4 } from 'uuid';
 import { getDatabase, ref, push, set, get, child } from "firebase/database";
 
-const url = 'http://localhost:3000/readingList'
-
 const DisplayBooks = () => {
 
   const { id } = useParams();
