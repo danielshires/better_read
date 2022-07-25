@@ -14,7 +14,7 @@ export default class Authors extends Component {
 
     fetchData = () => {
         const authorURL = this.props.authors[0].author.key
-        const searchURL = `http://openlibrary.org${authorURL}.json`
+        const searchURL = `https://openlibrary.org${authorURL}.json`
         fetch(searchURL)
             // Return JSON
             .then(response => {
