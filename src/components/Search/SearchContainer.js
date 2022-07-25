@@ -27,7 +27,7 @@ class SearchContainer extends Component {
     fecthResults = value => {
         const splitWords = value.split(" ")
         const searchTerm = splitWords.join("+")
-        const url = `http://openlibrary.org/search.json?q=${searchTerm}`
+        const url = `https://openlibrary.org/search.json?q=${searchTerm}`
 
         this.setState((prevState) => ({
             pageLoaded: false
