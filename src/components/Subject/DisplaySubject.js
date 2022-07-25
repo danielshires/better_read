@@ -15,7 +15,7 @@ export default class DisplaySubject extends Component {
     }
 
     fetchData = () => {
-        const searchURL = `http://openlibrary.org/subjects/${this.props.categoryName}.json?`
+        const searchURL = `https://openlibrary.org/subjects/${this.props.categoryName}.json?`
         fetch(searchURL)
             // Return JSON
             .then(response => {
