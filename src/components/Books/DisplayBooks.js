@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import Header from '../Page/Header';
+import Header from '../HeroBanners/Header';
 import Book from './Book';
 import { v4 as uuidv4 } from 'uuid';
 import { getDatabase, ref, push, set, get, child } from "firebase/database";

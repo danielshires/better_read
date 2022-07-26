@@ -1,21 +1,7 @@
 import React, { Component } from 'react'
-import SubjectRow from './components/Subject/SubjectRow';
-import Header from './components/Page/Header';
-import Hero from './components/Homepage/Hero';
-// import { getDatabase, ref, child, get } from "firebase/database";
-
-// const dbRef = ref(getDatabase());
-
-// get(child(dbRef, `readingList`)).then((snapshot) => {
-//   if (snapshot.exists()) {
-//     console.log(snapshot.val());
-//   } else {
-//     console.log("No data available");
-//   }
-// }).catch((error) => {
-//   console.error(error);
-// });
-
+import SubjectRow from '../../components/Subject/SubjectRow';
+import Header from '../../components/HeroBanners/Header';
+import Hero from './Hero';
 
 export default class Home extends Component {
   render() {

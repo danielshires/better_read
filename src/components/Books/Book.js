@@ -8,10 +8,17 @@ export default class Book extends Component {
   constructor(props) {
     super()
     this.state = {
+      dataLoaded: false
     }
 
     this.submitData = this.submitData.bind(this)
     this.searchObj = this.searchObj.bind(this)
+  }
+
+  componentDidMount(){
+    this.setState({
+      dataLoaded: true
+    })
   }
 
   componentDidUpdate(prevProps) {
@@ -100,6 +107,9 @@ export default class Book extends Component {
   }
 
   render() {
+  //   if (!this.state.dataLoaded) {
+  //     return null
+  // }
     return (
       <>
         {this.displayBook()}

@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './index.css';
 import App from './App';
-import ReadingList from './ReadingList';
-import SearchPage from './SearchPage'
+import MyLibrary from './containers/MyLibrary/MyLibrary';
+import SearchPage from './containers/SearchPage/SearchPage'
 import reportWebVitals from './reportWebVitals';
 import DisplayBooks from './components/Books/DisplayBooks';
 import { initializeApp } from 'firebase/app';
@@ -28,7 +28,7 @@ root.render(
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="books/:id" element={<DisplayBooks />} />
-        <Route path="my-library" element={<ReadingList />} />
+        <Route path="my-library" element={<MyLibrary />} />
         <Route path="search" element={<SearchPage />} />
       </Routes>
     </Router>

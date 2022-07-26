@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
-import Header from './components/Page/Header'
-import SingleBookContainer from './components/Subject/SingleBookContainer'
-import Hero from './components/Homepage/Hero'
+import Header from '../../components/HeroBanners/Header'
+import SingleBookContainer from '../../components/Subject/SingleBookContainer'
+import Hero from '../HomePage/Hero'
 import Emoji from 'a11y-react-emoji'
 import { getDatabase, ref, get, child, remove } from "firebase/database";
 
-export default class ReadingList extends Component {
+export default class MyLibrary extends Component {
 
   constructor() {
     super()

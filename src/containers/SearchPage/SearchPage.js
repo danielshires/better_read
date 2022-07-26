@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import Header from './components/Page/Header'
-import Hero from './components/Homepage/Hero'
-import SearchContainer from './components/Search/SearchContainer'
+import Header from '../../components/HeroBanners/Header'
+import Hero from '../HomePage/Hero'
+import SearchContainer from '../../components/Search/SearchContainer'
 
 export default class SearchPage extends Component {
   render() {

@@ -17,7 +17,6 @@ export class SearchForm extends Component {
 
     displayResults = () => {
         return this.props.searchResults.map(entry => {
-            console.log(entry)
             return <>
                 <Link to={`/books/${entry.key.substring(7)}`}>
                     <div className='flex justify-center items-center overflow-hidden object-cover h-60 lg:h-60 mb-3 bg-stone-100 px-8 py-8'>
